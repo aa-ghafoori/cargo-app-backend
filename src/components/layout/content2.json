@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_layout_content2s",
+  "info": {
+    "displayName": "Content2",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "sections": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.info",
+      "required": true
+    }
+  }
+}

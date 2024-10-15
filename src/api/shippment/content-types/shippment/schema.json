@@ -1,0 +1,96 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shippments",
+  "info": {
+    "singularName": "shippment",
+    "pluralName": "shippments",
+    "displayName": "Shippment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "trackingNumber": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "sender": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "shippments"
+    },
+    "reciever": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "shippments"
+    },
+    "branch": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::branch.branch",
+      "inversedBy": "shippments"
+    },
+    "shipmentStatus": {
+      "type": "enumeration",
+      "enum": [
+        "Pending",
+        "In Progress",
+        "Completed",
+        "Canceled",
+        "On Hold",
+        "Failed",
+        "In Transit",
+        "Delivered",
+        "Returned",
+        "Delayed",
+        "Awaiting Payment",
+        "Awaiting Pickup",
+        "Ready for Delivery"
+      ],
+      "default": "Pending"
+    },
+    "shippingDate": {
+      "type": "datetime",
+      "required": false
+    },
+    "deliveryDate": {
+      "type": "datetime",
+      "required": false
+    },
+    "servicePoint": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::service-point.service-point",
+      "inversedBy": "shippments"
+    },
+    "packages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::package.package",
+      "mappedBy": "shippment"
+    },
+    "tracking_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tracking.tracking",
+      "mappedBy": "shippment"
+    },
+    "originAddress": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "shippments"
+    },
+    "destinationAddress": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::country.country",
+      "inversedBy": "shippments"
+    }
+  }
+}

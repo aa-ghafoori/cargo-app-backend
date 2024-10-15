@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_layout_testimonials",
+  "info": {
+    "displayName": "Testimonials"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "testimonies": {
+      "displayName": "Testimony",
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.testimony",
+      "required": true
+    }
+  }
+}

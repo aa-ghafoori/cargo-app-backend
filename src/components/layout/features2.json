@@ -1,0 +1,27 @@
+{
+  "collectionName": "components_layout_features2s",
+  "info": {
+    "displayName": "Features2"
+  },
+  "options": {},
+  "attributes": {
+    "title1": {
+      "type": "string",
+      "required": true
+    },
+    "title2": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "features": {
+      "type": "component",
+      "repeatable": true,
+      "component": "elements.feature",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_elements_dimensions",
+  "info": {
+    "displayName": "Dimension"
+  },
+  "options": {},
+  "attributes": {
+    "length": {
+      "type": "decimal",
+      "required": true
+    },
+    "height": {
+      "type": "decimal",
+      "required": true
+    },
+    "width": {
+      "type": "integer",
+      "required": true
+    }
+  }
+}

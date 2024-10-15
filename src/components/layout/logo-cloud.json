@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_layout_logo_clouds",
+  "info": {
+    "displayName": "Logo Cloud"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "images": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true,
+      "required": true
+    }
+  }
+}

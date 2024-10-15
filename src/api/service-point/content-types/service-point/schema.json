@@ -1,0 +1,45 @@
+{
+  "kind": "collectionType",
+  "collectionName": "service_points",
+  "info": {
+    "singularName": "service-point",
+    "pluralName": "service-points",
+    "displayName": "Service Point",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true,
+      "unique": true
+    },
+    "latitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "longitude": {
+      "type": "decimal",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "branch": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::branch.branch",
+      "inversedBy": "service_points"
+    },
+    "shippments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shippment.shippment",
+      "mappedBy": "servicePoint"
+    }
+  }
+}

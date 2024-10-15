@@ -1,0 +1,17 @@
+services:
+  postgres:
+    image: postgres:latest
+    container_name: strapi_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: strapi2
+      POSTGRES_PASSWORD: strapi2
+      POSTGRES_DB: strapi2
+    volumes:
+      - strapi_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  strapi_data:
+    driver: local

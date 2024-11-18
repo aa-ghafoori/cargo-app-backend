@@ -14,7 +14,8 @@
   "attributes": {
     "name": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "country": {
       "type": "string",
@@ -26,7 +27,8 @@
     },
     "phone": {
       "type": "string",
-      "required": true
+      "required": true,
+      "unique": true
     },
     "city": {
       "type": "string",
@@ -46,7 +48,8 @@
     },
     "email": {
       "type": "email",
-      "required": true
+      "required": true,
+      "unique": true
     }
   }
 }

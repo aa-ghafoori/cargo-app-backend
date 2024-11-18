@@ -550,10 +550,14 @@ export interface ApiBranchBranch extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    name: Schema.Attribute.String & Schema.Attribute.Required;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     country: Schema.Attribute.String & Schema.Attribute.Required;
     address: Schema.Attribute.Text & Schema.Attribute.Required;
-    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     city: Schema.Attribute.String & Schema.Attribute.Required;
     service_points: Schema.Attribute.Relation<
       'oneToMany',
@@ -563,7 +567,9 @@ export interface ApiBranchBranch extends Struct.CollectionTypeSchema {
       'oneToMany',
       'api::shippment.shippment'
     >;
-    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -623,18 +629,21 @@ export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
     draftAndPublish: true;
   };
   attributes: {
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    idNumber: Schema.Attribute.BigInteger;
+    firstName: Schema.Attribute.String & Schema.Attribute.Required;
     city: Schema.Attribute.String & Schema.Attribute.Required;
     address: Schema.Attribute.Text & Schema.Attribute.Required;
-    phone: Schema.Attribute.String & Schema.Attribute.Required;
-    isActive: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<true>;
+    phone: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
     country: Schema.Attribute.String & Schema.Attribute.Required;
     shippments: Schema.Attribute.Relation<
       'oneToMany',
       'api::shippment.shippment'
     >;
-    email: Schema.Attribute.Email & Schema.Attribute.Required;
+    email: Schema.Attribute.Email &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    lastName: Schema.Attribute.String & Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -646,6 +655,37 @@ export interface ApiCustomerCustomer extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::customer.customer'
+    >;
+  };
+}
+
+export interface ApiDimenstionMultiplierDimenstionMultiplier
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'dimenstion_multipliers';
+  info: {
+    singularName: 'dimenstion-multiplier';
+    pluralName: 'dimenstion-multipliers';
+    displayName: 'Dimension Multiplier';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    minVolume: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    multiplier: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::dimenstion-multiplier.dimenstion-multiplier'
     >;
   };
 }
@@ -742,6 +782,22 @@ export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
     dimensions: Schema.Attribute.Component<'elements.dimension', false> &
       Schema.Attribute.Required;
     packageCost: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    packageType: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::package-type.package-type'
+    >;
+    weightMultiplier: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::weight-multiplier.weight-multiplier'
+    >;
+    dimensionMultiplier: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::dimenstion-multiplier.dimenstion-multiplier'
+    >;
+    transportModeMultiplier: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::pricing-rule.pricing-rule'
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -753,6 +809,38 @@ export interface ApiPackagePackage extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::package.package'
+    >;
+  };
+}
+
+export interface ApiPackageTypePackageType extends Struct.CollectionTypeSchema {
+  collectionName: 'package_types';
+  info: {
+    singularName: 'package-type';
+    pluralName: 'package-types';
+    displayName: 'Package Type';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    basePrice: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    name: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.Unique;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::package-type.package-type'
     >;
   };
 }
@@ -831,6 +919,37 @@ export interface ApiPostPost extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     locale: Schema.Attribute.String;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::post.post'>;
+  };
+}
+
+export interface ApiPricingRulePricingRule extends Struct.CollectionTypeSchema {
+  collectionName: 'pricing_rules';
+  info: {
+    singularName: 'pricing-rule';
+    pluralName: 'pricing-rules';
+    displayName: 'Transport Mode Multiplier';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    transportMode: Schema.Attribute.Enumeration<['Land', 'Sea', 'Air']> &
+      Schema.Attribute.Required;
+    multiplier: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::pricing-rule.pricing-rule'
+    >;
   };
 }
 
@@ -922,19 +1041,17 @@ export interface ApiShippmentShippment extends Struct.CollectionTypeSchema {
     branch: Schema.Attribute.Relation<'manyToOne', 'api::branch.branch'>;
     shipmentStatus: Schema.Attribute.Enumeration<
       [
+        'Saved',
+        'Requested',
+        'Approved',
+        'Closed',
+        'Received',
         'Pending',
-        'In Progress',
-        'Completed',
-        'Canceled',
-        'On Hold',
-        'Failed',
-        'In Transit',
+        'Shipped',
         'Delivered',
-        'Returned',
-        'Delayed',
-        'Awaiting Payment',
-        'Awaiting Pickup',
-        'Ready for Delivery',
+        'In Stock',
+        'Returned to Stock',
+        'Returned to Customer',
       ]
     > &
       Schema.Attribute.DefaultTo<'Pending'>;
@@ -957,6 +1074,12 @@ export interface ApiShippmentShippment extends Struct.CollectionTypeSchema {
       'manyToOne',
       'api::country.country'
     >;
+    shipmentType: Schema.Attribute.Enumeration<['Drop-off', 'Pick-up']> &
+      Schema.Attribute.DefaultTo<'Pick-up'>;
+    paymentType: Schema.Attribute.Enumeration<['Prepaid', 'Postpaid']> &
+      Schema.Attribute.DefaultTo<'Prepaid'>;
+    transportMode: Schema.Attribute.Enumeration<['Land', 'Sea', 'Air']> &
+      Schema.Attribute.Required;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -1020,6 +1143,36 @@ export interface ApiTrackingTracking extends Struct.CollectionTypeSchema {
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::tracking.tracking'
+    >;
+  };
+}
+
+export interface ApiWeightMultiplierWeightMultiplier
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'weight_multipliers';
+  info: {
+    singularName: 'weight-multiplier';
+    pluralName: 'weight-multipliers';
+    displayName: 'Weight Multiplier';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    minWeight: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    multiplier: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    packages: Schema.Attribute.Relation<'oneToMany', 'api::package.package'>;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::weight-multiplier.weight-multiplier'
     >;
   };
 }
@@ -1404,15 +1557,19 @@ declare module '@strapi/strapi' {
       'api::branch.branch': ApiBranchBranch;
       'api::country.country': ApiCountryCountry;
       'api::customer.customer': ApiCustomerCustomer;
+      'api::dimenstion-multiplier.dimenstion-multiplier': ApiDimenstionMultiplierDimenstionMultiplier;
       'api::global.global': ApiGlobalGlobal;
       'api::home.home': ApiHomeHome;
       'api::package.package': ApiPackagePackage;
+      'api::package-type.package-type': ApiPackageTypePackageType;
       'api::page.page': ApiPagePage;
       'api::post.post': ApiPostPost;
+      'api::pricing-rule.pricing-rule': ApiPricingRulePricingRule;
       'api::question.question': ApiQuestionQuestion;
       'api::service-point.service-point': ApiServicePointServicePoint;
       'api::shippment.shippment': ApiShippmentShippment;
       'api::tracking.tracking': ApiTrackingTracking;
+      'api::weight-multiplier.weight-multiplier': ApiWeightMultiplierWeightMultiplier;
       'admin::permission': AdminPermission;
       'admin::user': AdminUser;
       'admin::role': AdminRole;

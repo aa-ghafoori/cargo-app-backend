@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "weight_multipliers",
+  "info": {
+    "singularName": "weight-multiplier",
+    "pluralName": "weight-multipliers",
+    "displayName": "Weight Multiplier"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "minWeight": {
+      "type": "decimal",
+      "required": true
+    },
+    "multiplier": {
+      "type": "decimal",
+      "required": true
+    },
+    "packages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::package.package",
+      "mappedBy": "weightMultiplier"
+    }
+  }
+}

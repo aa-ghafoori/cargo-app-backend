@@ -12,13 +12,9 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "name": {
+    "firstName": {
       "type": "string",
       "required": true
-    },
-    "idNumber": {
-      "type": "biginteger",
-      "required": false
     },
     "city": {
       "type": "string",
@@ -30,11 +26,8 @@
     },
     "phone": {
       "type": "string",
-      "required": true
-    },
-    "isActive": {
-      "type": "boolean",
-      "default": true
+      "required": true,
+      "unique": true
     },
     "country": {
       "type": "string",
@@ -48,6 +41,11 @@
     },
     "email": {
       "type": "email",
+      "required": true,
+      "unique": true
+    },
+    "lastName": {
+      "type": "string",
       "required": true
     }
   }

@@ -38,19 +38,17 @@
     "shipmentStatus": {
       "type": "enumeration",
       "enum": [
+        "Saved",
+        "Requested",
+        "Approved",
+        "Closed",
+        "Received",
         "Pending",
-        "In Progress",
-        "Completed",
-        "Canceled",
-        "On Hold",
-        "Failed",
-        "In Transit",
+        "Shipped",
         "Delivered",
-        "Returned",
-        "Delayed",
-        "Awaiting Payment",
-        "Awaiting Pickup",
-        "Ready for Delivery"
+        "In Stock",
+        "Returned to Stock",
+        "Returned to Customer"
       ],
       "default": "Pending"
     },
@@ -91,6 +89,31 @@
       "relation": "manyToOne",
       "target": "api::country.country",
       "inversedBy": "shippments"
+    },
+    "shipmentType": {
+      "type": "enumeration",
+      "enum": [
+        "Drop-off",
+        "Pick-up"
+      ],
+      "default": "Pick-up"
+    },
+    "paymentType": {
+      "type": "enumeration",
+      "enum": [
+        "Prepaid",
+        "Postpaid"
+      ],
+      "default": "Prepaid"
+    },
+    "transportMode": {
+      "type": "enumeration",
+      "enum": [
+        "Land",
+        "Sea",
+        "Air"
+      ],
+      "required": true
     }
   }
 }

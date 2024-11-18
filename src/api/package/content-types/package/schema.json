@@ -53,6 +53,30 @@
     "packageCost": {
       "type": "decimal",
       "required": true
+    },
+    "packageType": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::package-type.package-type",
+      "inversedBy": "packages"
+    },
+    "weightMultiplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::weight-multiplier.weight-multiplier",
+      "inversedBy": "packages"
+    },
+    "dimensionMultiplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::dimenstion-multiplier.dimenstion-multiplier",
+      "inversedBy": "packages"
+    },
+    "transportModeMultiplier": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::pricing-rule.pricing-rule",
+      "inversedBy": "packages"
     }
   }
 }

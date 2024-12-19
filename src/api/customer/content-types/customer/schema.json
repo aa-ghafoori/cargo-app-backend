@@ -33,12 +33,6 @@
       "type": "string",
       "required": true
     },
-    "shippments": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::shippment.shippment",
-      "mappedBy": "reciever"
-    },
     "email": {
       "type": "email",
       "required": true,
@@ -47,6 +41,12 @@
     "lastName": {
       "type": "string",
       "required": true
+    },
+    "shipments": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::shipment.shipment",
+      "mappedBy": "receiver"
     }
   }
 }

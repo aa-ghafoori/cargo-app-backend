@@ -34,16 +34,10 @@
       "type": "string",
       "required": true
     },
-    "service_points": {
+    "shipments": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::service-point.service-point",
-      "mappedBy": "branch"
-    },
-    "shippments": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::shippment.shippment",
+      "target": "api::shipment.shipment",
       "mappedBy": "branch"
     },
     "email": {

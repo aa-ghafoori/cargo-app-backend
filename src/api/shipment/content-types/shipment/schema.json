@@ -1,0 +1,83 @@
+{
+  "kind": "collectionType",
+  "collectionName": "shipments",
+  "info": {
+    "singularName": "shipment",
+    "pluralName": "shipments",
+    "displayName": "Shipment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "trackingNumber": {
+      "type": "string",
+      "unique": true,
+      "required": true
+    },
+    "sender": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "shipments"
+    },
+    "receiver": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::customer.customer",
+      "inversedBy": "shipments"
+    },
+    "branch": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::branch.branch",
+      "inversedBy": "shipments"
+    },
+    "shippingDate": {
+      "type": "datetime",
+      "required": false
+    },
+    "deliveryDate": {
+      "type": "datetime",
+      "required": false
+    },
+    "packages": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::package.package",
+      "mappedBy": "shipment"
+    },
+    "tracking_histories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tracking.tracking",
+      "mappedBy": "shipment"
+    },
+    "originAddress": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::address.address",
+      "inversedBy": "shipments"
+    },
+    "destinationAddress": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::address.address",
+      "inversedBy": "shipments"
+    },
+    "shipmentType": {
+      "type": "string",
+      "required": true
+    },
+    "transferMode": {
+      "type": "string",
+      "required": true
+    },
+    "shipmentCost": {
+      "type": "decimal",
+      "required": true
+    }
+  }
+}

@@ -1,11 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "service_points",
+  "collectionName": "locations",
   "info": {
-    "singularName": "service-point",
-    "pluralName": "service-points",
-    "displayName": "Service Point",
-    "description": ""
+    "singularName": "location",
+    "pluralName": "locations",
+    "displayName": "Location"
   },
   "options": {
     "draftAndPublish": true
@@ -28,6 +27,12 @@
     "address": {
       "type": "text",
       "required": true
+    },
+    "trackings": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tracking.tracking",
+      "mappedBy": "location"
     }
   }
 }

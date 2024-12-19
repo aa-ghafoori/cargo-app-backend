@@ -4,7 +4,7 @@
   "info": {
     "singularName": "tracking",
     "pluralName": "trackings",
-    "displayName": "Tracking History",
+    "displayName": "Tracking",
     "description": ""
   },
   "options": {
@@ -12,36 +12,21 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "shippment": {
+    "shipment": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::shippment.shippment",
+      "target": "api::shipment.shipment",
       "inversedBy": "tracking_histories"
     },
-    "location": {
+    "shipmentStatus": {
       "type": "string",
       "required": true
     },
-    "shipmentStatus": {
-      "type": "enumeration",
-      "enum": [
-        "Order Placed",
-        "Package Prepared",
-        "Label Created",
-        "Picked Up",
-        "In Transit",
-        "Arrived at Facility",
-        "Out for Delivery",
-        "Delivery Attempted",
-        "Delivered",
-        "Returned to Sender",
-        "Lost",
-        "Damaged",
-        "Awaiting Pickup",
-        "Customs Clearance",
-        "In Warehouse"
-      ],
-      "default": "Order Placed"
+    "location": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::location.location",
+      "inversedBy": "trackings"
     }
   }
 }

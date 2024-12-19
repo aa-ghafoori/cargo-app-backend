@@ -12,7 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "basePrice": {
+    "maxWeight": {
       "type": "decimal",
       "required": true
     },
@@ -24,8 +24,8 @@
     },
     "name": {
       "type": "string",
-      "required": true,
-      "unique": true
+      "unique": true,
+      "required": true
     }
   }
 }

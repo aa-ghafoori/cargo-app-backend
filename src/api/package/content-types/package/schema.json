@@ -12,13 +12,7 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "shippment": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::shippment.shippment",
-      "inversedBy": "packages"
-    },
-    "weight": {
+    "netWeight": {
       "type": "decimal",
       "required": true
     },
@@ -28,26 +22,6 @@
     },
     "value": {
       "type": "decimal",
-      "required": true
-    },
-    "trackingNumber": {
-      "type": "string",
-      "required": true,
-      "unique": true
-    },
-    "packageStatus": {
-      "type": "enumeration",
-      "enum": [
-        "Pending",
-        "Shipped",
-        "Delivered"
-      ],
-      "default": "Pending"
-    },
-    "dimensions": {
-      "type": "component",
-      "repeatable": false,
-      "component": "elements.dimension",
       "required": true
     },
     "packageCost": {
@@ -60,22 +34,18 @@
       "target": "api::package-type.package-type",
       "inversedBy": "packages"
     },
-    "weightMultiplier": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::weight-multiplier.weight-multiplier",
-      "inversedBy": "packages"
+    "pricePerKg": {
+      "type": "decimal",
+      "required": true
     },
-    "dimensionMultiplier": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::dimenstion-multiplier.dimenstion-multiplier",
-      "inversedBy": "packages"
+    "packageStatus": {
+      "type": "string",
+      "required": true
     },
-    "transportModeMultiplier": {
+    "shipment": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::pricing-rule.pricing-rule",
+      "target": "api::shipment.shipment",
       "inversedBy": "packages"
     }
   }

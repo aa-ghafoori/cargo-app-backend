@@ -1,5 +1,99 @@
 import type { Struct, Schema } from '@strapi/strapi';
 
+export interface ElementsTestimony extends Struct.ComponentSchema {
+  collectionName: 'components_elements_testimonies';
+  info: {
+    displayName: 'Testimony';
+    description: '';
+  };
+  attributes: {
+    text: Schema.Attribute.Text & Schema.Attribute.Required;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    handle: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface ElementsReceiver extends Struct.ComponentSchema {
+  collectionName: 'components_elements_receivers';
+  info: {
+    displayName: 'Person';
+    description: '';
+  };
+  attributes: {
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    address: Schema.Attribute.Text & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    country: Schema.Attribute.String & Schema.Attribute.Required;
+    state: Schema.Attribute.String & Schema.Attribute.Required;
+    city: Schema.Attribute.String & Schema.Attribute.Required;
+    zipCode: Schema.Attribute.Integer;
+  };
+}
+
+export interface ElementsLogoLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_logo_links';
+  info: {
+    displayName: 'Logo Link';
+  };
+  attributes: {
+    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+    href: Schema.Attribute.String & Schema.Attribute.Required;
+    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface ElementsLink extends Struct.ComponentSchema {
+  collectionName: 'components_elements_links';
+  info: {
+    displayName: 'Link';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    href: Schema.Attribute.String & Schema.Attribute.Required;
+    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
+  };
+}
+
+export interface ElementsInfo extends Struct.ComponentSchema {
+  collectionName: 'components_elements_infos';
+  info: {
+    displayName: 'Info';
+  };
+  attributes: {
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+  };
+}
+
+export interface ElementsFeature extends Struct.ComponentSchema {
+  collectionName: 'components_elements_features';
+  info: {
+    displayName: 'Feature';
+    description: '';
+  };
+  attributes: {
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    href: Schema.Attribute.String & Schema.Attribute.Required;
+    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
+  };
+}
+
+export interface ElementsDimension extends Struct.ComponentSchema {
+  collectionName: 'components_elements_dimensions';
+  info: {
+    displayName: 'Dimension';
+  };
+  attributes: {
+    length: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    height: Schema.Attribute.Decimal & Schema.Attribute.Required;
+    width: Schema.Attribute.Integer & Schema.Attribute.Required;
+  };
+}
+
 export interface LayoutTestimonials extends Struct.ComponentSchema {
   collectionName: 'components_layout_testimonials';
   info: {
@@ -284,103 +378,16 @@ export interface LayoutBlog extends Struct.ComponentSchema {
   };
 }
 
-export interface ElementsTestimony extends Struct.ComponentSchema {
-  collectionName: 'components_elements_testimonies';
-  info: {
-    displayName: 'Testimony';
-    description: '';
-  };
-  attributes: {
-    text: Schema.Attribute.Text & Schema.Attribute.Required;
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    handle: Schema.Attribute.String & Schema.Attribute.Required;
-    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    isFeatured: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-  };
-}
-
-export interface ElementsReceiver extends Struct.ComponentSchema {
-  collectionName: 'components_elements_receivers';
-  info: {
-    displayName: 'Person';
-    description: '';
-  };
-  attributes: {
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    address: Schema.Attribute.Text & Schema.Attribute.Required;
-    phone: Schema.Attribute.String & Schema.Attribute.Required;
-    country: Schema.Attribute.String & Schema.Attribute.Required;
-    state: Schema.Attribute.String & Schema.Attribute.Required;
-    city: Schema.Attribute.String & Schema.Attribute.Required;
-    zipCode: Schema.Attribute.Integer;
-  };
-}
-
-export interface ElementsLogoLink extends Struct.ComponentSchema {
-  collectionName: 'components_elements_logo_links';
-  info: {
-    displayName: 'Logo Link';
-  };
-  attributes: {
-    image: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-    href: Schema.Attribute.String & Schema.Attribute.Required;
-    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-  };
-}
-
-export interface ElementsLink extends Struct.ComponentSchema {
-  collectionName: 'components_elements_links';
-  info: {
-    displayName: 'Link';
-  };
-  attributes: {
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    href: Schema.Attribute.String & Schema.Attribute.Required;
-    isExternal: Schema.Attribute.Boolean & Schema.Attribute.DefaultTo<false>;
-  };
-}
-
-export interface ElementsInfo extends Struct.ComponentSchema {
-  collectionName: 'components_elements_infos';
-  info: {
-    displayName: 'Info';
-  };
-  attributes: {
-    title: Schema.Attribute.String & Schema.Attribute.Required;
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
-  };
-}
-
-export interface ElementsFeature extends Struct.ComponentSchema {
-  collectionName: 'components_elements_features';
-  info: {
-    displayName: 'Feature';
-    description: '';
-  };
-  attributes: {
-    name: Schema.Attribute.String & Schema.Attribute.Required;
-    description: Schema.Attribute.Text & Schema.Attribute.Required;
-    href: Schema.Attribute.String & Schema.Attribute.Required;
-    logo: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
-  };
-}
-
-export interface ElementsDimension extends Struct.ComponentSchema {
-  collectionName: 'components_elements_dimensions';
-  info: {
-    displayName: 'Dimension';
-  };
-  attributes: {
-    length: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    height: Schema.Attribute.Decimal & Schema.Attribute.Required;
-    width: Schema.Attribute.Integer & Schema.Attribute.Required;
-  };
-}
-
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'elements.testimony': ElementsTestimony;
+      'elements.receiver': ElementsReceiver;
+      'elements.logo-link': ElementsLogoLink;
+      'elements.link': ElementsLink;
+      'elements.info': ElementsInfo;
+      'elements.feature': ElementsFeature;
+      'elements.dimension': ElementsDimension;
       'layout.testimonials': LayoutTestimonials;
       'layout.team': LayoutTeam;
       'layout.team-member': LayoutTeamMember;
@@ -401,13 +408,6 @@ declare module '@strapi/strapi' {
       'layout.content': LayoutContent;
       'layout.call-to-action': LayoutCallToAction;
       'layout.blog': LayoutBlog;
-      'elements.testimony': ElementsTestimony;
-      'elements.receiver': ElementsReceiver;
-      'elements.logo-link': ElementsLogoLink;
-      'elements.link': ElementsLink;
-      'elements.info': ElementsInfo;
-      'elements.feature': ElementsFeature;
-      'elements.dimension': ElementsDimension;
     }
   }
 }
